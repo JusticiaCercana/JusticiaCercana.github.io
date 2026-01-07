@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Justicia Cercana</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        .app-wrapper {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-step {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 2rem;
+            bottom: -1rem;
+            width: 2px;
+            background: #e5e7eb;
+        }
+
+        .timeline-step:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-message {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .section-card {
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Animación sutil para el logo */
+        .logo-animation {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="app-wrapper w-full h-full overflow-auto bg-gray-50"><!-- PANTALLA 1: Landing Page / Inicio -->
+   <div id="screen-landing" class="screen-content min-h-full"><!-- Header -->
+    <header class="w-full bg-white shadow-sm">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+       <div class="flex items-center space-x-3">
+        <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center overflow-hidden logo-animation">
+         <svg width="48" height="48" viewbox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Círculo protector de fondo --> <circle cx="24" cy="24" r="16" fill="white" opacity="0.25" /> <!-- Mano izquierda protectora --> <path d="M12 24C12 24 13 20 15 17C16 15.5 17.5 14 19 13L20 12.5C20.5 12.2 21 12.5 21 13V20C21 20.5 20.5 21 20 21C19.5 21 19 20.5 19 20V15C18 15.5 17 16.5 16 18C14.5 20 13.5 22.5 13.5 24.5C13.5 26 14 27.5 15 28.5C15.5 29 16 29 16.5 28.5L21 24L22 25L17 30C16 31 14.5 31 13.5 30C11.5 28 11 26 11 24C11 24 11.5 24 12 24Z" fill="white" stroke="white" stroke-width="0.5" /> <!-- Mano derecha protectora --> <path d="M36 24C36 24 35 20 33 17C32 15.5 30.5 14 29 13L28 12.5C27.5 12.2 27 12.5 27 13V20C27 20.5 27.5 21 28 21C28.5 21 29 20.5 29 20V15C30 15.5 31 16.5 32 18C33.5 20 34.5 22.5 34.5 24.5C34.5 26 34 27.5 33 28.5C32.5 29 32 29 31.5 28.5L27 24L26 25L31 30C32 31 33.5 31 34.5 30C36.5 28 37 26 37 24C37 24 36.5 24 36 24Z" fill="white" stroke="white" stroke-width="0.5" /> <!-- Corazón en el centro simbolizando amor y cuidado --> <path d="M24 29C24 29 20.5 26 20.5 23C20.5 21 22 20 23.2 20C23.7 20 24 20.3 24 20.8C24 20.3 24.3 20 24.8 20C26 20 27.5 21 27.5 23C27.5 26 24 29 24 29Z" fill="white" opacity="0.95" /> <!-- Pequeña balanza en la parte inferior representando justicia --> <line x1="21" y1="32" x2="27" y2="32" stroke="white" stroke-width="1.5" opacity="0.8" /> <circle cx="21" cy="32" r="1" fill="white" opacity="0.8" /> <circle cx="27" cy="32" r="1" fill="white" opacity="0.8" /> <line x1="24" y1="30" x2="24" y2="32" stroke="white" stroke-width="1.5" opacity="0.8" />
+         </svg>
+        </div>
+        <h1 id="site-title" class="text-2xl font-bold text-gray-900">Justicia Cercana</h1>
+       </div>
+       <div class="flex items-center space-x-2 bg-green-50 px-4 py-2 rounded-lg"><span class="text-green-600">🔒</span> <span id="security-message" class="text-sm font-medium text-green-800">Tu información está protegida</span>
+       </div>
+      </div>
+     </div>
+    </header><!-- Hero Section -->
+    <section class="w-full gradient-bg text-white py-20">
+     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="mb-8"><span class="inline-block px-4 py-2 bg-white bg-opacity-20 rounded-full text-sm font-semibold mb-6"> 🏳️‍🌈 Espacio Seguro y Confidencial </span>
+      </div>
+      <h2 id="hero-title" class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Tu voz importa. Tu seguridad es nuestra prioridad.</h2>
+      <p id="hero-subtitle" class="text-xl md:text-2xl mb-12 text-purple-100">Asesoramiento legal gratuito y acompañamiento profesional para mujeres, comunidad LGTBI y víctimas de violencia de género</p><!-- Main Action Buttons -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto"><button onclick="showScreen('screen-emergency')" class="btn-primary bg-white text-purple-700 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-purple-50"> 🆘 Pedir ayuda ahora </button> <button onclick="showScreen('screen-education')" class="btn-primary bg-white text-purple-700 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-purple-50"> 📚 Conocer mis derechos </button>
+      </div>
+     </div>
+    </section><!-- Mission Statement -->
+    <section class="w-full bg-white py-16">
+     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 md:p-12 text-center mb-8">
+       <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Un espacio para sanar, empoderarse y ser TÚ MISMO... SIN MIEDO</h3>
+       <p class="text-lg text-gray-700 leading-relaxed">Este es un espacio dedicado a mujeres, comunidad LGTBI y toda víctima de violencia. Te ayudaremos a sanar, empoderarte y a ejercer tus derechos con dignidad. <strong>Juntos romperemos el silencio y construiremos un futuro con amor y respeto.</strong></p>
+      </div><!-- Misión y Visión -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8"><!-- Misión -->
+       <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-purple-600">
+        <div class="flex items-center mb-4">
+         <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4"><span class="text-2xl">🎯</span>
+         </div>
+         <h4 class="text-2xl font-bold text-gray-900">Nuestra Misión</h4>
+        </div>
+        <p class="text-gray-700 leading-relaxed">Brindar acceso seguro, cercano y gratuito a la justicia a mujeres, comunidad LGTBI y víctimas de violencia de género, mediante una plataforma digital confiable que ofrece orientación legal, acompañamiento emocional, guía para denunciar sin revictimización y seguimiento del proceso, garantizando siempre la confidencialidad y protección de la información.</p>
+       </div><!-- Visión -->
+       <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-pink-600">
+        <div class="flex items-center mb-4">
+         <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4"><span class="text-2xl">🌟</span>
+         </div>
+         <h4 class="text-2xl font-bold text-gray-900">Nuestra Visión</h4>
+        </div>
+        <p class="text-gray-700 leading-relaxed">Ser la plataforma digital líder en acceso a la justicia en Latinoamérica, reconocida por proteger, empoderar y acompañar a mujeres, comunidad LGTBI y víctimas de violencia, logrando que ninguna persona sufra en silencio y que el acceso a la justicia sea más humano, rápido, cercano y sin discriminación, contribuyendo a una sociedad con igualdad, respeto y vida libre de violencia.</p>
+       </div>
+      </div>
+     </div>
+    </section><!-- Services Overview -->
+    <section class="w-full bg-gray-50 py-16">
+     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Nuestros Servicios</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+       <div class="section-card bg-white rounded-xl p-8 shadow-md">
+        <div class="text-4xl mb-4">
+         ⚖️
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">Asesoramiento Legal Gratuito</h4>
+        <p class="text-gray-600">Accede a orientación jurídica profesional sin costo alguno. Conoce tus derechos y las vías legales disponibles.</p>
+       </div>
+       <div class="section-card bg-white rounded-xl p-8 shadow-md">
+        <div class="text-4xl mb-4">
+         🛡️
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">Guía en el Proceso</h4>
+        <p class="text-gray-600">Te acompañamos paso a paso en la presentación de tu denuncia, evitando la revictimización.</p>
+       </div>
+       <div class="section-card bg-white rounded-xl p-8 shadow-md">
+        <div class="text-4xl mb-4">
+         📊
+        </div>
+        <h4 class="text-xl font-bold text-gray-900 mb-3">Seguimiento de Caso</h4>
+        <p class="text-gray-600">Monitorea el avance de tu proceso legal en tiempo real con actualizaciones constantes.</p>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- PANTALLA 2: Botón de Emergencia / Ayuda Rápida -->
+   <div id="screen-emergency" class="screen-content hidden min-h-full">
+    <div class="w-full bg-white shadow-sm py-4 px-4 sm:px-6 lg:px-8"><button onclick="showScreen('screen-landing')" class="text-purple-600 hover:text-purple-800 font-semibold flex items-center"> ← Volver al inicio </button>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+     <div class="bg-red-50 border-l-4 border-red-500 p-6 mb-8 rounded-r-lg">
+      <div class="flex items-center"><span class="text-3xl mr-4">🆘</span>
+       <div>
+        <h2 class="text-2xl font-bold text-red-800 mb-2">Ayuda Inmediata</h2>
+        <p class="text-red-700">Selecciona el tipo de ayuda que necesitas ahora</p>
+       </div>
+      </div>
+     </div>
+     <div class="space-y-4"><!-- Orientación Legal Inmediata -->
+      <div class="section-card bg-white rounded-xl p-8 shadow-lg border-2 border-purple-200 cursor-pointer hover:border-purple-400">
+       <div class="flex items-start space-x-4">
+        <div class="text-4xl">
+         ⚖️
+        </div>
+        <div class="flex-1">
+         <h3 class="text-2xl font-bold text-gray-900 mb-3">Orientación Legal Inmediata</h3>
+         <p class="text-gray-600 mb-4">Conecta con un profesional del derecho que te orientará sobre los pasos legales a seguir según tu situación particular.</p><button onclick="showScreen('screen-chat')" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700"> Iniciar consulta legal </button>
+        </div>
+       </div>
+      </div><!-- Acompañamiento Emocional -->
+      <div class="section-card bg-white rounded-xl p-8 shadow-lg border-2 border-pink-200 cursor-pointer hover:border-pink-400">
+       <div class="flex items-start space-x-4">
+        <div class="text-4xl">
+         💝
+        </div>
+        <div class="flex-1">
+         <h3 class="text-2xl font-bold text-gray-900 mb-3">Acompañamiento Emocional</h3>
+         <p class="text-gray-600 mb-4">Recibe contención y apoyo psicológico de profesionales capacitados en crisis y trauma.</p><button onclick="showScreen('screen-chat')" class="bg-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-pink-700"> Solicitar apoyo emocional </button>
+        </div>
+       </div>
+      </div><!-- Línea Segura -->
+      <div class="section-card bg-white rounded-xl p-8 shadow-lg border-2 border-green-200 cursor-pointer hover:border-green-400">
+       <div class="flex items-start space-x-4">
+        <div class="text-4xl">
+         📞
+        </div>
+        <div class="flex-1">
+         <h3 class="text-2xl font-bold text-gray-900 mb-3">Llamar a una Línea Segura</h3>
+         <p class="text-gray-600 mb-4">Contacta directamente con líneas de emergencia especializadas disponibles 24/7.</p>
+         <div class="space-y-3"><a href="tel:911" target="_blank" rel="noopener noreferrer" class="block bg-red-600 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-red-700"> 🚨 Emergencia: 911 </a> <a href="tel:0997755167" target="_blank" rel="noopener noreferrer" class="block bg-green-600 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-green-700"> 👨‍⚕️ Línea de Ayuda: 0997755167 </a> <a href="tel:3683750" target="_blank" rel="noopener noreferrer" class="block bg-purple-600 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-purple-700"> 📞 Línea Alterna: 3683750 </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- PANTALLA 3: Chat Seguro 24/7 -->
+   <div id="screen-chat" class="screen-content hidden min-h-full bg-gray-50">
+    <div class="w-full bg-white shadow-sm py-4 px-4 sm:px-6 lg:px-8"><button onclick="showScreen('screen-landing')" class="text-purple-600 hover:text-purple-800 font-semibold flex items-center"> ← Volver al inicio </button>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+     <div class="bg-white rounded-2xl shadow-xl overflow-hidden" style="height: 600px; display: flex; flex-direction: column;"><!-- Chat Header -->
+      <div class="gradient-bg text-white px-6 py-4">
+       <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-xl">💬</span>
+        </div>
+        <div>
+         <h3 class="font-bold text-lg">Chat Seguro 24/7</h3>
+         <p class="text-sm text-purple-100">Estamos aquí para ayudarte</p>
+        </div>
+       </div>
+      </div><!-- Chat Messages -->
+      <div id="chat-messages" class="flex-1 p-6 overflow-y-auto bg-gray-50">
+       <div class="chat-message mb-4">
+        <div class="bg-purple-100 rounded-2xl rounded-tl-none p-4 inline-block max-w-md">
+         <p id="chat-welcome-message" class="text-gray-800">Hola, estás a salvo aquí. ¿Cómo puedo ayudarte?</p>
+        </div>
+       </div>
+      </div><!-- Quick Response Options -->
+      <div class="p-6 bg-white border-t border-gray-200">
+       <p class="text-sm text-gray-600 mb-3 font-semibold">Selecciona una opción:</p>
+       <div class="space-y-2"><button onclick="handleChatOption('denunciar')" class="w-full bg-purple-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-purple-700 text-left flex items-center"> <span class="mr-3">📝</span> Quiero denunciar </button> <button onclick="handleChatOption('orientacion')" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-blue-700 text-left flex items-center"> <span class="mr-3">❓</span> No sé qué hacer </button> <button onclick="handleChatOption('apoyo')" class="w-full bg-pink-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-pink-700 text-left flex items-center"> <span class="mr-3">💝</span> Necesito apoyo emocional </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- PANTALLA 4: Guía para Denunciar -->
+   <div id="screen-guide" class="screen-content hidden min-h-full bg-gray-50">
+    <div class="w-full bg-white shadow-sm py-4 px-4 sm:px-6 lg:px-8"><button onclick="showScreen('screen-landing')" class="text-purple-600 hover:text-purple-800 font-semibold flex items-center"> ← Volver al inicio </button>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+     <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">Guía para Denunciar</h2>
+      <p class="text-xl text-gray-600">Proceso paso a paso, sin revictimización</p>
+     </div>
+     <div class="bg-white rounded-2xl shadow-lg p-8">
+      <div id="form-step-1" class="form-step">
+       <div class="mb-8">
+        <div class="flex items-center justify-between mb-6">
+         <h3 class="text-2xl font-bold text-gray-900">Paso 1 de 5: Tipo de Violencia</h3><span class="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">20%</span>
+        </div>
+        <p class="text-gray-600 mb-6">Identifica el tipo de violencia que has experimentado. Puedes seleccionar más de una opción.</p>
+        <div class="space-y-3"><label class="flex items-start p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-400 hover:bg-purple-50"> <input type="checkbox" class="mt-1 mr-3 h-5 w-5 text-purple-600 rounded">
+          <div>
+           <div class="font-semibold text-gray-900">
+            Violencia Física
+           </div>
+           <div class="text-sm text-gray-600">
+            Golpes, empujones, quemaduras u otras agresiones físicas
+           </div>
+          </div></label> <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-400 hover:bg-purple-50"> <input type="checkbox" class="mt-1 mr-3 h-5 w-5 text-purple-600 rounded">
+          <div>
+           <div class="font-semibold text-gray-900">
+            Violencia Psicológica
+           </div>
+           <div class="text-sm text-gray-600">
+            Insultos, humillaciones, amenazas, control o manipulación
+           </div>
+          </div></label> <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-400 hover:bg-purple-50"> <input type="checkbox" class="mt-1 mr-3 h-5 w-5 text-purple-600 rounded">
+          <div>
+           <div class="font-semibold text-gray-900">
+            Violencia Sexual
+           </div>
+           <div class="text-sm text-gray-600">
+            Actos sexuales sin consentimiento o bajo coacción
+           </div>
+          </div></label> <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-purple-400 hover:bg-purple-50"> <input type="checkbox" class="mt-1 mr-3 h-5 w-5 text-purple-600 rounded">
+          <div>
+           <div class="font-semibold text-gray-900">
+            Violencia Económica
+           </div>
+           <div class="text-sm text-gray-600">
+            Control del dinero, impedimento para trabajar o privación de recursos
+           </div>
+          </div></label>
+        </div>
+       </div><button onclick="nextStep(2)" class="w-full bg-purple-600 text-white px-6 py-4 rounded-lg font-bold text-lg hover:bg-purple-700"> Continuar → </button>
+      </div>
+      <div id="form-step-2" class="form-step hidden">
+       <div class="mb-8">
+        <div class="flex items-center justify-between mb-6">
+         <h3 class="text-2xl font-bold text-gray-900">Paso 2 de 5: Tus Derechos</h3><span class="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">40%</span>
+        </div>
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 rounded-r-lg">
+         <h4 class="font-bold text-blue-900 mb-4 text-lg">Es importante que conozcas tus derechos:</h4>
+         <div class="space-y-4">
+          <div class="flex items-start"><span class="text-2xl mr-3">✓</span>
+           <div><strong class="text-blue-900">Derecho a la vida libre de violencia:</strong>
+            <p class="text-blue-800">Tienes derecho a vivir sin ser agredida física, psicológica, sexual o económicamente.</p>
+           </div>
+          </div>
+          <div class="flex items-start"><span class="text-2xl mr-3">✓</span>
+           <div><strong class="text-blue-900">Derecho a la protección:</strong>
+            <p class="text-blue-800">Puedes solicitar medidas de protección inmediatas para ti y tu familia.</p>
+           </div>
+          </div>
+          <div class="flex items-start"><span class="text-2xl mr-3">✓</span>
+           <div><strong class="text-blue-900">Derecho a asistencia legal gratuita:</strong>
+            <p class="text-blue-800">Tienes derecho a un abogado/a sin costo que te represente en todo el proceso.</p>
+           </div>
+          </div>
+          <div class="flex items-start"><span class="text-2xl mr-3">✓</span>
+           <div><strong class="text-blue-900">Derecho a la confidencialidad:</strong>
+            <p class="text-blue-800">Tu información personal y tu caso son confidenciales.</p>
+           </div>
+          </div>
+         </div>
+        </div><label class="flex items-center p-4 border-2 border-gray-200 rounded-lg"> <input type="checkbox" class="mr-3 h-5 w-5 text-purple-600 rounded"> <span class="text-gray-700 font-medium">He leído y comprendo mis derechos</span> </label>
+       </div>
+       <div class="flex space-x-4"><button onclick="nextStep(1)" class="flex-1 bg-gray-200 text-gray-700 px-6 py-4 rounded-lg font-bold hover:bg-gray-300"> ← Anterior </button> <button onclick="nextStep(3)" class="flex-1 bg-purple-600 text-white px-6 py-4 rounded-lg font-bold hover:bg-purple-700"> Continuar → </button>
+       </div>
+      </div>
+      <div id="form-step-3" class="form-step hidden">
+       <div class="mb-8">
+        <div class="flex items-center justify-between mb-6">
+         <h3 class="text-2xl font-bold text-gray-900">Paso 3 de 5: Relato de los Hechos</h3><span class="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">60%</span>
+        </div>
+        <p class="text-gray-600 mb-6">Describe lo sucedido con el mayor detalle posible. Esta información es confidencial y servirá para tu denuncia formal.</p>
+        <div class="space-y-4">
+         <div><label class="block text-sm font-semibold text-gray-700 mb-2">¿Qué ocurrió?</label> <textarea rows="6" class="w-full border-2 border-gray-300 rounded-lg p-4 focus:border-purple-500 focus:outline-none" placeholder="Describe los hechos con la mayor claridad posible..."></textarea>
+         </div>
+         <div><label class="block text-sm font-semibold text-gray-700 mb-2">¿Cuándo ocurrió? (fecha aproximada)</label> <input type="date" class="w-full border-2 border-gray-300 rounded-lg p-4 focus:border-purple-500 focus:outline-none">
+         </div>
+         <div><label class="block text-sm font-semibold text-gray-700 mb-2">¿Dónde ocurrió?</label> <input type="text" class="w-full border-2 border-gray-300 rounded-lg p-4 focus:border-purple-500 focus:outline-none" placeholder="Dirección o lugar específico">
+         </div>
+         <div><label class="block text-sm font-semibold text-gray-700 mb-2">Datos del agresor (si los conoces)</label> <input type="text" class="w-full border-2 border-gray-300 rounded-lg p-4 focus:border-purple-500 focus:outline-none" placeholder="Nombre completo, relación contigo, etc.">
+         </div>
+        </div>
+       </div>
+       <div class="flex space-x-4"><button onclick="nextStep(2)" class="flex-1 bg-gray-200 text-gray-700 px-6 py-4 rounded-lg font-bold hover:bg-gray-300"> ← Anterior </button> <button onclick="nextStep(4)" class="flex-1 bg-purple-600 text-white px-6 py-4 rounded-lg font-bold hover:bg-purple-700"> Continuar → </button>
+       </div>
+      </div>
+      <div id="form-step-4" class="form-step hidden">
+       <div class="mb-8">
+        <div class="flex items-center justify-between mb-6">
+         <h3 class="text-2xl font-bold text-gray-900">Paso 4 de 5: Evidencias (Opcional)</h3><span class="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">80%</span>
+        </div>
+        <p class="text-gray-600 mb-6">Si cuentas con evidencias (fotos, mensajes, documentos), puedes adjuntarlas. Esto es opcional pero puede fortalecer tu caso.</p>
+        <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-purple-400 bg-gray-50">
+         <div class="text-5xl mb-4">
+          📎
+         </div>
+         <p class="text-gray-700 font-semibold mb-2">Arrastra archivos aquí o haz clic para seleccionar</p>
+         <p class="text-sm text-gray-500 mb-4">Fotos, capturas de pantalla, audios, videos, documentos</p><button class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700"> Seleccionar archivos </button>
+        </div>
+        <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+         <p class="text-sm text-yellow-800"><strong>Nota:</strong> Todas las evidencias son almacenadas de forma segura y confidencial. Solo serán accesibles por las autoridades competentes.</p>
+        </div>
+       </div>
+       <div class="flex space-x-4"><button onclick="nextStep(3)" class="flex-1 bg-gray-200 text-gray-700 px-6 py-4 rounded-lg font-bold hover:bg-gray-300"> ← Anterior </button> <button onclick="nextStep(5)" class="flex-1 bg-purple-600 text-white px-6 py-4 rounded-lg font-bold hover:bg-purple-700"> Continuar → </button>
+       </div>
+      </div>
+      <div id="form-step-5" class="form-step hidden">
+       <div class="mb-8">
+        <div class="flex items-center justify-between mb-6">
+         <h3 class="text-2xl font-bold text-gray-900">Paso 5 de 5: Revisión y Envío</h3><span class="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">100%</span>
+        </div>
+        <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-6 rounded-r-lg">
+         <h4 class="font-bold text-green-900 mb-3 text-lg">Revisión final</h4>
+         <p class="text-green-800 mb-4">Por favor, revisa que toda la información sea correcta antes de enviar tu denuncia.</p>
+         <ul class="space-y-2 text-green-800">
+          <li class="flex items-start"><span class="mr-2">✓</span> <span>Tipo de violencia identificado</span></li>
+          <li class="flex items-start"><span class="mr-2">✓</span> <span>Derechos reconocidos y comprendidos</span></li>
+          <li class="flex items-start"><span class="mr-2">✓</span> <span>Relato de los hechos completo</span></li>
+          <li class="flex items-start"><span class="mr-2">✓</span> <span>Evidencias adjuntadas (si corresponde)</span></li>
+         </ul>
+        </div>
+        <div class="space-y-4 mb-6"><label class="flex items-start p-4 border-2 border-gray-200 rounded-lg"> <input type="checkbox" class="mt-1 mr-3 h-5 w-5 text-purple-600 rounded"> <span class="text-gray-700">Confirmo que la información proporcionada es veraz y completa</span> </label> <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg"> <input type="checkbox" class="mt-1 mr-3 h-5 w-5 text-purple-600 rounded"> <span class="text-gray-700">Autorizo el procesamiento de esta información para fines legales</span> </label>
+        </div>
+        <div class="bg-blue-50 p-6 rounded-lg mb-6">
+         <p class="text-blue-900 text-center"><strong>Al enviar tu denuncia:</strong> Recibirás un número de caso para dar seguimiento. Un profesional se pondrá en contacto contigo en las próximas 24 horas.</p>
+        </div>
+       </div>
+       <div class="flex space-x-4"><button onclick="nextStep(4)" class="flex-1 bg-gray-200 text-gray-700 px-6 py-4 rounded-lg font-bold hover:bg-gray-300"> ← Anterior </button> <button onclick="submitComplaint()" class="flex-1 bg-green-600 text-white px-6 py-4 rounded-lg font-bold text-lg hover:bg-green-700"> ✓ Enviar Denuncia </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- PANTALLA 5: Seguimiento del Caso -->
+   <div id="screen-tracking" class="screen-content hidden min-h-full bg-gray-50">
+    <div class="w-full bg-white shadow-sm py-4 px-4 sm:px-6 lg:px-8"><button onclick="showScreen('screen-landing')" class="text-purple-600 hover:text-purple-800 font-semibold flex items-center"> ← Volver al inicio </button>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+     <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">Seguimiento de Tu Caso</h2>
+      <p class="text-xl text-gray-600 mb-6">Número de caso: <strong class="text-purple-600" id="case-number"></strong></p>
+      <div class="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full font-semibold">
+       Estado: En Proceso
+      </div>
+     </div>
+     <div class="bg-white rounded-2xl shadow-lg p-8">
+      <h3 class="text-2xl font-bold text-gray-900 mb-8">Línea de Tiempo del Proceso</h3>
+      <div class="space-y-6" id="timeline-container"><!-- La línea de tiempo se generará dinámicamente con JavaScript -->
+      </div>
+      <div class="mt-8 bg-purple-50 p-6 rounded-lg">
+       <h4 class="font-bold text-purple-900 mb-3">Próxima acción recomendada</h4>
+       <p class="text-purple-800 mb-4">Mantente atenta a las notificaciones. Tu abogada te contactará en las próximas 24 horas para revisar las medidas de protección.</p><button onclick="showScreen('screen-chat')" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700"> Contactar con mi abogada </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- PANTALLA 6: Módulos Educativos -->
+   <div id="screen-education" class="screen-content hidden min-h-full bg-gray-50">
+    <div class="w-full bg-white shadow-sm py-4 px-4 sm:px-6 lg:px-8"><button onclick="showScreen('screen-landing')" class="text-purple-600 hover:text-purple-800 font-semibold flex items-center"> ← Volver al inicio </button>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+     <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">Conoce Tus Derechos</h2>
+      <p class="text-xl text-gray-600">Información legal que te empodera</p>
+     </div>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8"><!-- Mis Derechos -->
+      <div class="section-card bg-white rounded-2xl shadow-lg overflow-hidden">
+       <div class="gradient-bg text-white p-6">
+        <div class="flex items-center space-x-3"><span class="text-3xl">⚖️</span>
+         <h3 class="text-2xl font-bold">Mis Derechos</h3>
+        </div>
+       </div>
+       <div class="p-6 space-y-6">
+        <div>
+         <h4 class="font-bold text-lg text-gray-900 mb-2">Derecho a la vida libre de violencia</h4>
+         <p class="text-gray-700">Toda persona tiene derecho a vivir sin ser agredida física, psicológica, sexual o económicamente. Este derecho está consagrado en la Constitución y en tratados internacionales.</p>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-900 mb-2">Derecho a la protección</h4>
+         <p class="text-gray-700">Puedes solicitar medidas de protección inmediatas para ti y tu familia. Estas incluyen restricciones de acercamiento, salida del agresor del domicilio y protección policial.</p>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-900 mb-2">Derecho a la asistencia legal gratuita</h4>
+         <p class="text-gray-700">Tienes derecho a un abogado/a sin costo que te represente en todo el proceso. El Estado garantiza este servicio a través de la Defensoría Pública.</p>
+        </div>
+        <div>
+         <h4 class="font-bold text-lg text-gray-900 mb-2">Derecho a la confidencialidad</h4>
+         <p class="text-gray-700">Tu información personal y tu caso son confidenciales. Solo las autoridades judiciales y profesionales autorizados tendrán acceso a tu expediente.</p>
+        </div>
+        <div class="bg-purple-50 p-4 rounded-lg">
+         <p class="text-purple-900 font-semibold">Estos derechos son irrenunciables y el Estado tiene la obligación de garantizarlos en todo momento.</p>
+        </div>
+       </div>
+      </div><!-- Cómo Denunciar -->
+      <div class="section-card bg-white rounded-2xl shadow-lg overflow-hidden">
+       <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6">
+        <div class="flex items-center space-x-3"><span class="text-3xl">📝</span>
+         <h3 class="text-2xl font-bold">¿Cómo Denunciar?</h3>
+        </div>
+       </div>
+       <div class="p-6 space-y-6">
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+         <p class="text-yellow-800 font-semibold">Tu seguridad es lo primero. Si estás en peligro inmediato, llama al 911.</p>
+        </div>
+        <div>
+         <div class="flex items-start mb-3">
+          <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">
+           1
+          </div>
+          <div>
+           <h4 class="font-bold text-lg text-gray-900 mb-2">Busca un lugar seguro</h4>
+           <p class="text-gray-700">Si es posible, aléjate del agresor y dirígete a un lugar donde te sientas protegida (casa de familiar, refugio, comisaría).</p>
+          </div>
+         </div>
+        </div>
+        <div>
+         <div class="flex items-start mb-3">
+          <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">
+           2
+          </div>
+          <div>
+           <h4 class="font-bold text-lg text-gray-900 mb-2">Elige cómo denunciar</h4>
+           <p class="text-gray-700 mb-3">Tienes varias opciones para presentar tu denuncia:</p>
+           <ul class="space-y-2 text-gray-700">
+            <li class="flex items-start"><span class="mr-2">•</span> <span><strong>Llamada al 911:</strong> Atención inmediata de emergencia</span></li>
+            <li class="flex items-start"><span class="mr-2">•</span> <span><strong>Esta plataforma:</strong> Denuncia guiada paso a paso</span></li>
+            <li class="flex items-start"><span class="mr-2">•</span> <span><strong>Comisaría o Fiscalía:</strong> Denuncia presencial</span></li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div>
+         <div class="flex items-start mb-3">
+          <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">
+           3
+          </div>
+          <div>
+           <h4 class="font-bold text-lg text-gray-900 mb-2">Cuenta lo que pasó</h4>
+           <p class="text-gray-700">Describe los hechos con la mayor claridad posible. No te preocupes por detalles legales, nosotros te ayudaremos a formalizar tu denuncia.</p>
+          </div>
+         </div>
+        </div>
+        <div class="bg-green-50 p-4 rounded-lg">
+         <p class="text-green-900 font-semibold mb-2">Recuerda:</p>
+         <ul class="space-y-1 text-green-800">
+          <li>• No estás sola en este proceso</li>
+          <li>• No necesitas pruebas para denunciar</li>
+          <li>• Tu testimonio es válido y será escuchado</li>
+         </ul>
+        </div><button onclick="showScreen('screen-guide')" class="w-full bg-blue-600 text-white px-6 py-4 rounded-lg font-bold text-lg hover:bg-blue-700"> Iniciar denuncia guiada → </button>
+       </div>
+      </div>
+     </div><!-- Recursos Adicionales -->
+     <div class="mt-12 bg-white rounded-2xl shadow-lg p-8">
+      <h3 class="text-2xl font-bold text-gray-900 mb-6">Recursos Adicionales</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+       <div class="text-center p-6 bg-purple-50 rounded-lg">
+        <div class="text-4xl mb-3">
+         📞
+        </div>
+        <h4 class="font-bold text-gray-900 mb-2">Líneas de Ayuda</h4>
+        <p class="text-gray-600 text-sm mb-3">Asistencia telefónica 24/7</p><button onclick="showScreen('screen-emergency')" class="text-purple-600 font-semibold hover:text-purple-800"> Ver números → </button>
+       </div>
+       <div class="text-center p-6 bg-blue-50 rounded-lg">
+        <div class="text-4xl mb-3">
+         💬
+        </div>
+        <h4 class="font-bold text-gray-900 mb-2">Chat de Apoyo</h4>
+        <p class="text-gray-600 text-sm mb-3">Conversación confidencial</p><button onclick="showScreen('screen-chat')" class="text-blue-600 font-semibold hover:text-blue-800"> Abrir chat → </button>
+       </div>
+       <div class="text-center p-6 bg-pink-50 rounded-lg">
+        <div class="text-4xl mb-3">
+         🏛️
+        </div>
+        <h4 class="font-bold text-gray-900 mb-2">Mi Caso</h4>
+        <p class="text-gray-600 text-sm mb-3">Seguimiento en tiempo real</p><button onclick="showScreen('screen-tracking')" class="text-pink-600 font-semibold hover:text-pink-800"> Ver seguimiento → </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Footer -->
+   <footer class="w-full bg-gray-900 text-white py-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center">
+      <p id="footer-text" class="text-gray-400 mb-4">Justicia Cercana © 2026 - Todos los derechos reservados</p>
+      <p class="text-sm text-gray-500">Plataforma de asistencia legal gratuita para víctimas de violencia</p>
+      <div class="mt-4 flex justify-center space-x-4 text-sm text-gray-400"><span>🔒 Conexión segura</span> <span>•</span> <span>📞 Disponible 24/7</span> <span>•</span> <span>🏳️‍🌈 Espacio inclusivo</span>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+        const defaultConfig = {
+            site_title: "Justicia Cercana",
+            hero_title: "Tu voz importa. Tu seguridad es nuestra prioridad.",
+            hero_subtitle: "Asesoramiento legal gratuito y acompañamiento profesional para mujeres, comunidad LGTBI y víctimas de violencia de género",
+            security_message: "Tu información está protegida",
+            chat_welcome: "Hola, estás a salvo aquí. ¿Cómo puedo ayudarte?",
+            footer_text: "Justicia Cercana © 2026 - Todos los derechos reservados",
+            background_color: "#f9fafb",
+            primary_color: "#667eea",
+            text_color: "#111827",
+            accent_color: "#ec4899"
+        };
+
+        async function onConfigChange(config) {
+            document.getElementById('site-title').textContent = config.site_title || defaultConfig.site_title;
+            document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+            document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+            document.getElementById('security-message').textContent = config.security_message || defaultConfig.security_message;
+            document.getElementById('chat-welcome-message').textContent = config.chat_welcome || defaultConfig.chat_welcome;
+            document.getElementById('footer-text').textContent = config.footer_text || defaultConfig.footer_text;
+
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const primaryColor = config.primary_color || defaultConfig.primary_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const accentColor = config.accent_color || defaultConfig.accent_color;
+
+            document.body.style.backgroundColor = backgroundColor;
+            document.querySelectorAll('.app-wrapper').forEach(el => el.style.backgroundColor = backgroundColor);
+            
+            const gradientElements = document.querySelectorAll('.gradient-bg');
+            gradientElements.forEach(el => {
+                el.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${accentColor} 100%)`;
+            });
+
+            document.querySelectorAll('.btn-primary').forEach(el => {
+                el.style.backgroundColor = primaryColor;
+            });
+        }
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen-content').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function nextStep(stepNumber) {
+            document.querySelectorAll('.form-step').forEach(step => {
+                step.classList.add('hidden');
+            });
+            document.getElementById('form-step-' + stepNumber).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function submitComplaint() {
+            const now = new Date();
+            const caseNumber = `#JC-${now.getFullYear()}-${String(Math.floor(Math.random() * 900000) + 100000)}`;
+            
+            const confirmationMessage = document.createElement('div');
+            confirmationMessage.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            confirmationMessage.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+                    <div class="text-6xl mb-4">✓</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Denuncia Enviada Exitosamente</h3>
+                    <p class="text-gray-600 mb-6">Tu caso ha sido registrado con el número: <strong class="text-purple-600">${caseNumber}</strong></p>
+                    <p class="text-gray-600 mb-6">Un profesional se pondrá en contacto contigo en las próximas 24 horas.</p>
+                    <button onclick="this.parentElement.parentElement.remove(); loadCaseTracking('${caseNumber}');" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-purple-700">
+                        Ver seguimiento del caso
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(confirmationMessage);
+        }
+
+        function loadCaseTracking(caseNumber) {
+            showScreen('screen-tracking');
+            
+            document.getElementById('case-number').textContent = caseNumber;
+            
+            const now = new Date();
+            const monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+            
+            const date1 = new Date(now);
+            const dateStr1 = `${date1.getDate()} ${monthNames[date1.getMonth()]} ${date1.getFullYear()}, ${String(date1.getHours()).padStart(2, '0')}:${String(date1.getMinutes()).padStart(2, '0')}`;
+            
+            const date2 = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+            const dateStr2 = `${date2.getDate()} ${monthNames[date2.getMonth()]} ${date2.getFullYear()}, ${String(date2.getHours()).padStart(2, '0')}:${String(date2.getMinutes()).padStart(2, '0')}`;
+            
+            const date3 = new Date(now.getTime() + 48 * 60 * 60 * 1000);
+            const dateStr3 = `${date3.getDate()} ${monthNames[date3.getMonth()]} ${date3.getFullYear()}, ${String(date3.getHours()).padStart(2, '0')}:${String(date3.getMinutes()).padStart(2, '0')}`;
+            
+            const timelineHTML = `
+                <!-- Paso 1 - Completado -->
+                <div class="timeline-step">
+                    <div class="timeline-dot bg-green-500">
+                        <span class="text-white text-xs">✓</span>
+                    </div>
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-bold text-green-900">Denuncia Enviada</h4>
+                            <span class="text-sm text-green-700">${dateStr1}</span>
+                        </div>
+                        <p class="text-green-800">Tu denuncia ha sido recibida y registrada en el sistema judicial.</p>
+                    </div>
+                </div>
+
+                <!-- Paso 2 - Completado -->
+                <div class="timeline-step">
+                    <div class="timeline-dot bg-green-500">
+                        <span class="text-white text-xs">✓</span>
+                    </div>
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-bold text-green-900">Caso Asignado</h4>
+                            <span class="text-sm text-green-700">${dateStr2}</span>
+                        </div>
+                        <p class="text-green-800">Tu caso ha sido asignado a la Dra. Melany Rocha, abogada especializada. Contacto: 0997755167</p>
+                    </div>
+                </div>
+
+                <!-- Paso 3 - En Progreso -->
+                <div class="timeline-step">
+                    <div class="timeline-dot bg-blue-500">
+                        <span class="text-white text-xs">→</span>
+                    </div>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-bold text-blue-900">Medidas de Protección Solicitadas</h4>
+                            <span class="text-sm text-blue-700">${dateStr3}</span>
+                        </div>
+                        <p class="text-blue-800">Se han solicitado medidas cautelares de protección. Pendiente de resolución judicial (estimado: 48-72 horas).</p>
+                    </div>
+                </div>
+
+                <!-- Paso 4 - Pendiente -->
+                <div class="timeline-step">
+                    <div class="timeline-dot bg-gray-300">
+                        <span class="text-gray-600 text-xs">○</span>
+                    </div>
+                    <div class="bg-gray-50 border-l-4 border-gray-300 p-4 rounded-r-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-bold text-gray-700">Audiencia Programada</h4>
+                            <span class="text-sm text-gray-600">Pendiente</span>
+                        </div>
+                        <p class="text-gray-600">Una vez aprobadas las medidas de protección, se programará la audiencia preliminar.</p>
+                    </div>
+                </div>
+
+                <!-- Paso 5 - Pendiente -->
+                <div class="timeline-step">
+                    <div class="timeline-dot bg-gray-300">
+                        <span class="text-gray-600 text-xs">○</span>
+                    </div>
+                    <div class="bg-gray-50 border-l-4 border-gray-300 p-4 rounded-r-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-bold text-gray-700">Actualización del Proceso</h4>
+                            <span class="text-sm text-gray-600">Pendiente</span>
+                        </div>
+                        <p class="text-gray-600">Te notificaremos sobre los avances y próximos pasos del proceso judicial.</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('timeline-container').innerHTML = timelineHTML;
+        }
+
+        function handleChatOption(option) {
+            const messagesContainer = document.getElementById('chat-messages');
+            
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message mb-4 text-right';
+            
+            let messageText = '';
+            if (option === 'denunciar') {
+                messageText = 'Quiero denunciar';
+            } else if (option === 'orientacion') {
+                messageText = 'No sé qué hacer';
+            } else if (option === 'apoyo') {
+                messageText = 'Necesito apoyo emocional';
+            }
+            
+            userMessage.innerHTML = `
+                <div class="bg-purple-600 text-white rounded-2xl rounded-tr-none p-4 inline-block max-w-md">
+                    <p>${messageText}</p>
+                </div>
+            `;
+            messagesContainer.appendChild(userMessage);
+
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'chat-message mb-4';
+                
+                let responseText = '';
+                let actionButton = '';
+                
+                if (option === 'denunciar') {
+                    responseText = 'Entiendo que quieres presentar una denuncia. Te voy a guiar paso a paso para que el proceso sea lo más sencillo posible. ¿Estás en un lugar seguro ahora?';
+                    actionButton = '<button onclick="showScreen(\'screen-guide\')" class="mt-3 bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-700">Iniciar proceso de denuncia</button>';
+                } else if (option === 'orientacion') {
+                    responseText = 'Estoy aquí para ayudarte. Lo primero es asegurarnos de que estés a salvo. Cuéntame, ¿qué situación estás enfrentando? Recuerda que tienes derecho a recibir protección y asesoramiento legal gratuito.';
+                    actionButton = '<button onclick="showScreen(\'screen-education\')" class="mt-3 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700">Conocer mis derechos</button>';
+                } else if (option === 'apoyo') {
+                    responseText = 'Tu bienestar emocional es muy importante. Además del apoyo legal, puedo conectarte con profesionales especializados en contención psicológica. ¿Quieres que te ayude a contactar con un especialista?';
+                    actionButton = '<button onclick="showScreen(\'screen-emergency\')" class="mt-3 bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700">Ver opciones de apoyo</button>';
+                }
+                
+                botMessage.innerHTML = `
+                    <div class="bg-purple-100 rounded-2xl rounded-tl-none p-4 inline-block max-w-md">
+                        <p class="text-gray-800">${responseText}</p>
+                        ${actionButton}
+                    </div>
+                `;
+                messagesContainer.appendChild(botMessage);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+            
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig: defaultConfig,
+                onConfigChange: onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.primary_color || defaultConfig.primary_color,
+                            set: (value) => {
+                                config.primary_color = value;
+                                window.elementSdk.setConfig({ primary_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.accent_color || defaultConfig.accent_color,
+                            set: (value) => {
+                                config.accent_color = value;
+                                window.elementSdk.setConfig({ accent_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["site_title", config.site_title || defaultConfig.site_title],
+                    ["hero_title", config.hero_title || defaultConfig.hero_title],
+                    ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+                    ["security_message", config.security_message || defaultConfig.security_message],
+                    ["chat_welcome", config.chat_welcome || defaultConfig.chat_welcome],
+                    ["footer_text", config.footer_text || defaultConfig.footer_text]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b96765aa1cc95cd',t:'MTc2NzY1MjY2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
